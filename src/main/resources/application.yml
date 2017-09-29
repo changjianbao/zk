@@ -21,6 +21,11 @@ spring:
     testOnReturn: false
     # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
     filters: stat
+# -jpa配置；可逆向生成表
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
   mvc:
     view:
       prefix: /WEB-INF/view/

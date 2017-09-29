@@ -1,14 +1,18 @@
 package com.zk.pojo;
 
-/**
- * Created by mj on 2017/7/17.
- */
-public class User {
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
+public class Girl {
+    @Id
     private Integer id;
-    private Integer age;
     private String name;
-    private String username;
+    private Integer age;
+    private Integer username;
+
+    public Girl() {
+    }
 
     public Integer getId() {
         return id;
@@ -16,14 +20,6 @@ public class User {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
     }
 
     public String getName() {
@@ -34,12 +30,19 @@ public class User {
         this.name = name;
     }
 
-    public String getUsername() {
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public Integer getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setUsername(Integer username) {
         this.username = username;
     }
 }
-
