@@ -26,6 +26,7 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+# mvc模式相关配置
   mvc:
     view:
       prefix: /WEB-INF/view/
@@ -39,6 +40,7 @@ server:
   port: 80
 
 debug: false
+# --mybatis相关配置
 mybatis:
   mapper-locations: classpath:/mapper/*Mapper.xml
   type-aliases-package: com.boot.pojo
