@@ -29,6 +29,14 @@ public class UserController {
         mv.addObject("a", "7889");
         return mv;
     }
+    @RequestMapping(value="/findbyage" , method = RequestMethod.GET)
+    public ModelAndView findByAge() {
+        List<User> list = userService.findByAge(12);
+        ModelAndView mv =new ModelAndView("queryAll");
+        mv.addObject("list",list);
+        mv.addObject("a", "7889");
+        return mv;
+    }
     @RequestMapping(value="/gouploadimg", method = RequestMethod.GET)
     public ModelAndView goUploadImg() {
         ModelAndView mv =new ModelAndView("uploadimg");

@@ -24,8 +24,11 @@ spring:
     filters: stat
 # -jpa配置；可逆向生成表
   jpa:
+    database: MYSQL
     hibernate:
       ddl-auto: update
+#      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+#      dialect: org.hibernate.dialect.MySQL5Dialect
     show-sql: true
 # mvc模式相关配置
   mvc:
