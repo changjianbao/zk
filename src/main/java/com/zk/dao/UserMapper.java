@@ -10,11 +10,11 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
+/** extends JpaRepository<User,Integer>
  * Created by mj on 2017/7/17.
  */
 @Mapper
-public interface UserMapper extends JpaRepository<User,Integer>{
+public interface UserMapper{
     @Select("select * from user")
     List<User> query();
     @Select("select * from user where age=#{age}")
