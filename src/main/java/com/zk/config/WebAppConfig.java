@@ -1,4 +1,4 @@
-package com.zk;
+package com.zk.config;
 
 import com.zk.interceptor.MyInterceptor;
 import org.springframework.context.annotation.Configuration;
