@@ -9,13 +9,15 @@
     <sql id="Column_list">
         id,
         name,
+        girl_id,
         age
     </sql>
 
     <resultMap id="ListTest" type="com.zk.pojo.User" >
-        <id  column="id" property="id" />
-        <result column="name" property="name" />
-        <result column="age" property="age" />
+        <id  column="id"                property="id" />
+        <result column="name"           property="name" />
+        <result column="age"            property="age" />
+        <result column="girl_id"        property="girl.id" />
     </resultMap>
 
     <!-- 根据ID查询数据 -->

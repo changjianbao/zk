@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> query() {
-        return userMapper.query();
+        return userDao.query();
     }
 
     @Override
