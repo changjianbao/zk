@@ -24,7 +24,7 @@ import java.util.Map;
  * @authorAngel(QQ:412887952)
  */
 
-@Controller
+//@Controller
 public class HelloController {
 
     private String hello = "abc";

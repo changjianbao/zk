@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mapper.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.zk.dao.system.LoginDao">
+    <!-- 根据id获取用户信息 -->
+    <select id="findUserById" parameterType="int" resultType="com.zk.pojo.Login">
+        select * from login where id = #{id}
+    </select>
+    <!-- 查询用户list -->
+    <select id="list" resultType="com.zk.pojo.Login">
+        select * from login
+    </select>
+    <!-- 添加用户信息 -->
+    <insert id="insert" parameterType="com.zk.pojo.Login">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            select LAST_INSERT_ID()
+        </selectKey>
+        insert into
+        login
+          (loginname,password,role_id,real_name,telephone,bz,del_flag,create_by,create_date,update_by,update_date)
+        value
+          (#{loginname},#{password},#{roleId},#{realName},#{telephone},#{bz},#{delFlag},#{createBy},new Date(),#{updateBy},new Date());
+    </insert>
+    <!-- 根据id删除用户信息 -->
+    <delete id="delete" parameterType="int">
+        delete from login where id=#{id}
+    </delete>
+    <!-- 修改用户信息 -->
+    <update id="update" parameterType="com.zk.pojo.Login">
+        update
+            login
+        set
+            loginname=#{loginname},
+            password=#{password},
+            role_id=#{roleId},
+            real_name=#{realName},
+            telephone=#{telephone},
+            bz=#{bz},
+            del_flag=#{delFlag},
+            update_by=#{updateBy},
+            update_date=#{updateDate}
+        where id=#{id}
+    </update>
+</mapper>

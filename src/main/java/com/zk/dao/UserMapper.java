@@ -13,7 +13,7 @@ import java.util.List;
 /** extends JpaRepository<User,Integer>
  * Created by mj on 2017/7/17.
  */
-@Mapper
+//@Mapper
 public interface UserMapper{
     @Select("select * from user")
     List<User> query();

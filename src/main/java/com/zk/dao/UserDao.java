@@ -11,7 +11,7 @@ import java.util.List;
  * Created by mj on 2017/7/17.
  */
 
-@Mapper
+//@Mapper
 public interface UserDao {
     List<User> query();
 }
