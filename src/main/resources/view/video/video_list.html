@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>系统配置管理</title>
+<meta name="keywords" content="" />
+<meta name="description" content="LarryCMS Version:1.09" />
+<meta name="Author" content="larry" />
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<link rel="Shortcut Icon" href="/favicon.ico" />
+<!-- load css -->
+<link rel="stylesheet" type="text/css"
+	href="../../static/larryms/common/frame/layui/css/layui.css"
+	media="all">
+<link rel="stylesheet" type="text/css"
+	href="../../static/larryms/common/css/gobal.css" media="all">
+<link rel="stylesheet" type="text/css"
+	href="../../static/larryms/common/css/animate.css" media="all">
+<link rel="stylesheet" type="text/css"
+	href="../../static/larryms/backstage/css/common.css" media="all">
+<link rel="stylesheet" type="text/css"
+	href="../../static/larryms/backstage/css/sysconf.css" media="all">
+</head>
+</head>
+<body>
+	<div class="larry-fluid larry-wrapper animated fadeInRightBig">
+		<div class="layui-row lay-col-space15 ">
+			<div
+				class="layui-cos-xs12 layui-col-sm12 layui-col-md12 layui-col-lg12">
+				
+				<section class="larry-body">
+					<div class="larry-body-header">
+						<span class="tit">视频管理 ：</span>
+					</div>
+					<div class="larry-body-content clearfix">
+						<div class="larrycms-btn-box">
+							<div id="search"  class="larry-add-edit layui-btn inline-block"
+								data-url="/admin/conf/add.html">
+								<i data-icon="larry-xinjian" class="larry-icon inline-block">&#xe6dc;</i>查询
+							</div>
+							
+							<form action=""
+								class="layui-form larry-form-tit clearfix inline-block">
+								<div class="larry-search">
+									<div class="layui-input-inline">
+										<input id="searchName" type="text" name="title"   placeholder="请输入视频名" autocomplete="off" class="layui-input">
+									</div>
+								</div>
+
+
+							</form>
+						</div>
+				</section>
+			</div>
+			<div
+				class="layui-cos-xs12 layui-col-sm12 layui-col-md12 layui-col-lg12">
+				
+				<section class="larry-body">
+
+					<div class="larry-body-content clearfix">
+
+						<div class="layui-form larry-table-list">
+						<div class="layui-btn-group">
+						  <button id="add" class="layui-btn layui-btn-sm">
+						    <i class="layui-icon">&#xe654;</i>
+						  </button>
+						  <button id="del" class="layui-btn layui-btn-sm">
+						    <i class="layui-icon">&#xe640;</i>
+						  </button>
+						  
+						</div>
+							<table id="demo" lay-filter="test" class="layui-table"
+								lay-even="" lay-skin="line">
+
+							</table>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+	<!-- 加载js文件 -->
+	<script type="text/javascript"
+		src="../../static/larryms/common/frame/layui/layui.js"></script>
+
+	#[[
+	<script type="text/html" id="barDemo">
+
+  		<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  		<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+	</script>
+	
+
+	]]#
+	
+<script>
+layui.config({
+	base: '../../static/larryms/common/lib/'
+});
+layui.use(['jquery','table','layer'], function(){
+	var $ = layui.$,
+    table = layui.table,
+    layer = layui.layer;
+  //监听工具条
+  table.on('tool(test)', function(obj){ //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+    var data = obj.data; //获得当前行数据
+    var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+    var tr = obj.tr; //获得当前行 tr 的DOM对象
+   
+    if(layEvent === 'detail'){ //查看
+      //do somehing
+      console.log(tr)
+    } else if(layEvent === 'del'){ //删除
+      layer.confirm('真的删除行么', function(index){
+          $.post('/video/doDelete',{id:data.id},function(res){
+              if(res.status==1){
+                  layer.close(index);
+                  table.reload('idTest',{
+                      page: {
+                          curr: 1 //重新从第 1 页开始
+                      }
+                  });
+              }
+          })
+//        obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+//        layer.close(index);
+        //向服务端发送删除指令
+      });
+    } else if(layEvent === 'edit'){ //编辑
+      //do something
+        var index =layer.open({
+            type: 2,
+            title: '新增',
+            shadeClose: true,
+            shade: false,
+            maxmin: true, //开启最大化最小化按钮
+            area: ['893px', '600px'],
+            content: '/video/toVideoEditUI?id='+data.id
+        });
+        layer.full(index);
+      //同步更新缓存对应的值
+//      obj.update({
+//    	  userName: '123'
+//      });
+    }
+  });
+  
+  //第一个实例
+  table.render({
+	id: 'idTest',
+    elem: '#demo'
+    ,url: '/video/getVideoList' //数据接口
+    ,page: true //开启分页
+    ,limit:10
+    ,limits:[10,30,60,90]
+    ,cols: [[ //表头
+      {field: 'id', title: 'ID', width:"10%", sort: true, fixed: 'left',type:'checkbox'}
+      ,{field: 'name', title: '视频名', width:"10%"}
+      ,{field: 'vedioUrl', title: '视频路径', width:"30%", sort: true}
+      ,{field: 'upTime', title: '上传时间', width:"20%"}
+      ,{title: '操作',width:"30%",toolbar: '#barDemo'} 
+    ]]
+  });
+  //点击新增按钮，弹出新增页面
+  $('#add').on('click',function(){
+	  var index =layer.open({
+	      type: 2,
+	      title: '新增',
+	      shadeClose: true,
+	      shade: false,
+	      maxmin: true, //开启最大化最小化按钮
+	      area: ['893px', '600px'],
+	      content: '/video/toVideoEditUI'
+	    });
+	  layer.full(index);
+  });
+  //监听复选框
+  table.on('checkbox(test)', function(obj){
+//	  console.log(obj.checked); //当前是否选中状态
+//	  console.log(obj.data); //选中行的相关数据
+//	  console.log(obj.type); //如果触发的是全选，则为：all，如果触发的是单选，则为：one
+  });
+  //监听批量删除
+  $('#del').on('click',function(){
+	  var checkStatus = table.checkStatus('idTest'); //test即为基础参数id对应的值
+	  
+	  console.log(checkStatus.data) //获取选中行的数据
+	  console.log(checkStatus.data.length) //获取选中行数量，可作为是否有选中行的条件
+	  console.log(checkStatus.isAll ) //表格是否全选
+	  if(checkStatus.data.length>0){
+	      //循环删除
+          $.each( checkStatus.data, function(index, obj){
+
+              $.ajax({
+                  type: "post",
+                  url: "/video/doDelete",
+                  data: {id:obj.id},
+                  dataType: "json",
+                  async:false,
+                  success: function(data){
+
+                  }
+              });
+
+          });
+          //刷新表格
+          table.reload('idTest',{
+              page: {
+                  curr: 1 //重新从第 1 页开始
+              }
+          });
+          layer.msg("删除成功")
+	  }else{
+	      layer.msg("至少选中一行数据")
+	  }
+  });
+    //监听查询按钮
+    $('#search').on('click',function(){
+        table.reload('idTest', {
+            where: { //设定异步数据接口的额外参数，任意设
+                name: $("#searchName").val()
+
+            }
+            ,page: {
+                curr: 1 //重新从第 1 页开始
+            }
+        });
+	})
+});
+
+
+</script>
+</body>
+</html>

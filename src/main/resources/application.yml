@@ -1,14 +1,7 @@
 # Tomcat
 server:
-#    tomcat:
-#        uri-encoding: UTF-8
-#        max-threads: 1000
-#        min-spare-threads: 30
     port: 80
-
-#    connection-timeout: 5000
-#    context-path: /renren-fast
-
+#    context-path: /
 spring:
   # --数据库连接配置
   datasource:
@@ -42,15 +35,17 @@ spring:
   #      dialect: org.hibernate.dialect.MySQL5Dialect
     show-sql: true
   # mvc模式相关配置
-  mvc:
-    view:
-      prefix: /view/
-      suffix: .jsp
+#  mvc:
+#    view:
+#      prefix: /view/
+#      suffix: .jsp
   #  --文件上传大小；不设置默认是1MB
   http:
     multipart:
       maxFileSize: 100Mb
       maxRequestSize: 100Mb
+  resources: # 指定静态资源的路径
+          static-locations: classpath:/static/,classpath:/view/
 
 debug: false
 # --mybatis相关配置

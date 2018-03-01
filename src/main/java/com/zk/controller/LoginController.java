@@ -15,11 +15,18 @@ import java.util.List;
  */
 
 @Controller
-@RequestMapping("/login")
+@RequestMapping(value="/")
 public class LoginController {
 
     @Autowired
     LoginService loginService;
+
+    @RequestMapping(value="/")
+    public ModelAndView login() {
+        ModelAndView mv =new ModelAndView("login.html");
+        return mv;
+    }
+
 
     @RequestMapping(value="/list")
     public @ResponseBody JSONObject list() {
@@ -41,10 +48,6 @@ public class LoginController {
 
         return result;
     }
-    @RequestMapping(value="/toLogin")
-    public ModelAndView insert() {
-        ModelAndView mv =new ModelAndView("system/login");
-        return mv;
-    }
+
 
 }
