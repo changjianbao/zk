@@ -2,21 +2,23 @@ package com.zk.pojo;
 
 import java.util.Date;
 
-public class Login {
+public class Category {
 
   private int id;
-  private String username;
-  private String password;
-  private String roleId;
-  private String realName;
-  private String telephone;
+  private String name;
+  private int parentId;
+  private String url;
+  private int sort;
+  private String sysId;
   private String bz;
   private int delFlag;
   private int createBy;
   private Date createDate;
   private int updateBy;
   private Date updateDate;
-  private int sort;
+  private int isFunctionMenu;
+  private String img;
+  private double price;
 
 
   public int getId() {
@@ -28,47 +30,40 @@ public class Login {
   }
 
 
-  public String getUsername() {
-    return username;
+  public String getName() {
+    return name;
   }
 
-  public void setUsername(String username) {
-    this.username = username;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
+  public void setName(String name) {
+    this.name = name;
   }
 
 
-  public String getRoleId() {
-    return roleId;
+  public int getParentId() {
+    return parentId;
   }
 
-  public void setRoleId(String roleId) {
-    this.roleId = roleId;
-  }
-
-
-  public String getRealName() {
-    return realName;
-  }
-
-  public void setRealName(String realName) {
-    this.realName = realName;
+  public void setParentId(int parentId) {
+    this.parentId = parentId;
   }
 
 
-  public String getTelephone() {
-    return telephone;
+  public String getUrl() {
+    return url;
   }
 
-  public void setTelephone(String telephone) {
-    this.telephone = telephone;
+  public void setUrl(String url) {
+    this.url = url;
+  }
+
+
+
+  public String getSysId() {
+    return sysId;
+  }
+
+  public void setSysId(String sysId) {
+    this.sysId = sysId;
   }
 
 
@@ -126,6 +121,14 @@ public class Login {
   }
 
 
+  public int getIsFunctionMenu() {
+    return isFunctionMenu;
+  }
+
+  public void setIsFunctionMenu(int isFunctionMenu) {
+    this.isFunctionMenu = isFunctionMenu;
+  }
+
   public int getSort() {
     return sort;
   }
@@ -134,4 +137,19 @@ public class Login {
     this.sort = sort;
   }
 
+  public String getImg() {
+    return img;
+  }
+
+  public void setImg(String img) {
+    this.img = img;
+  }
+
+  public double getPrice() {
+    return price;
+  }
+
+  public void setPrice(double price) {
+    this.price = price;
+  }
 }

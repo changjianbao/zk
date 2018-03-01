@@ -26,10 +26,28 @@ public class LoginController {
         ModelAndView mv =new ModelAndView("login.html");
         return mv;
     }
+    @RequestMapping(value="/doLogin")
+    public @ResponseBody JSONObject doLogin(Login login) {
+        //返回结果
+        JSONObject result=new JSONObject();
+        result.put("status",0);
+        if(login.getUsername()!=null&&login.getPassword()!=null
+                &&!login.getUsername().trim().equals("")&&!login.getPassword().trim().equals("")){
+            Login login1 = loginService.findUserByUsername(login);
+            if(login1!=null){
+                result.put("status",1);
+            }else{
+                result.put("msg","用户名或密码错误");
+            }
+        }else{
+            result.put("msg","请输入用户名和密码");
+        }
+        return result;
+    }
 
+    @RequestMapping(value="/edit")
+    public @ResponseBody JSONObject list(Login login) {
 
-    @RequestMapping(value="/list")
-    public @ResponseBody JSONObject list() {
         //返回结果
         JSONObject result=new JSONObject();
         //查询列表数据

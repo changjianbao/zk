@@ -10,6 +10,7 @@ import java.util.List;
 public interface LoginService {
     List<Login> list();
     Login findById(Integer id);
+    Login findUserByUsername(Login login);
     int insert(Login user);
     void update(Login user);
     void delete(Integer id);

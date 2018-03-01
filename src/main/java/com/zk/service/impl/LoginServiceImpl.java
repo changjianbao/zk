@@ -37,6 +37,16 @@ public class LoginServiceImpl implements LoginService {
     }
 
     /**
+     * 根据用户名查询用户实体
+     * @param login
+     * @return
+     */
+    @Override
+    public Login findUserByUsername(Login login) {
+        return loginDao.findUserByUsername(login);
+    }
+
+    /**
      * 新增
      * @param user
      * @return

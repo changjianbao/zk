@@ -9,7 +9,7 @@ layui.use(['jquery','common','layer','form','larryMenu'],function(){
 
     var mar_top = ($(document).height()-$('#larry_login').height())/2.5;
     $('#larry_login').css({'margin-top':mar_top});
-    common.larryCmsSuccess('用户名：larry 密码：larry 无须输入验证码，输入正确后直接登录后台!','larryMS后台帐号登录提示',20);
+    //common.larryCmsSuccess('用户名：larry 密码：larry 无须输入验证码，输入正确后直接登录后台!','larryMS后台帐号登录提示',20);
     var placeholder = '';
     $("#larry_form input[type='text'],#larry_form input[type='password']").on('focus',function(){
           placeholder = $(this).attr('placeholder');
@@ -46,21 +46,40 @@ layui.use(['jquery','common','layer','form','larryMenu'],function(){
         });
     });
 
+    // form.on('submit(submit)',function(data){
+    //     console.log(data);
+    //     if(data.field.user_name == 'larry' && data.field.password == 'larry'){
+    //         layer.msg('登录成功',{icon:1,time:1000});
+    //         setTimeout(function(){
+    //             window.location.href =  "index.html";
+    //         },1000);
+    //
+    //     }else{
+    //         layer.tips('用户名:larry 密码：larry 无需输入验证码', $('#password'), {
+    //            tips: [3, '#FF5722']
+    //         });
+    //     }
+    //     return false;
+    // });
     form.on('submit(submit)',function(data){
-        console.log(data);
-        if(data.field.user_name == 'larry' && data.field.password == 'larry'){
-            layer.msg('登录成功',{icon:1,time:1000});
-            setTimeout(function(){
-                window.location.href =  "index.html";
-            },1000);
-           
-        }else{
-            layer.tips('用户名:larry 密码：larry 无需输入验证码', $('#password'), {
-               tips: [3, '#FF5722']
-            });
-        }
+        params=data.field;
+        submit($,params)
         return false;
     });
+
+    //表单提交操作
+    function  submit($,params) {
+        $.post('/doLogin',params,function(res){
+            console.log(22222222222222);
+            if(res.status==1){
+                window.location.href =  "index.html";
+            }else{
+                layer.tips(res.msg, $('#password'), {
+                    tips: [3, '#FF5722']
+                });
+            }
+        })
+    }
 
     // 右键菜单控制
     var larrycmsMenuData = [
@@ -92,7 +111,8 @@ layui.use(['jquery','common','layer','form','larryMenu'],function(){
     },$('html'));
     
   //js获取项目根路径，如： http://localhost:8083/uimcardprj  
-    function getRootPath(){  
+    function getRootPath(){
+        console.log(111111111111111);
         //获取当前网址，如： http://localhost:8083/uimcardprj/share/meun.jsp  
         var curWwwPath=window.document.location.href;  
         //获取主机地址之后的目录，如： /uimcardprj/share/meun.jsp  

@@ -6,7 +6,11 @@
 <mapper namespace="com.zk.dao.system.LoginDao">
     <!-- 根据id获取用户信息 -->
     <select id="findUserById" parameterType="int" resultType="com.zk.pojo.Login">
-        select * from login where id = #{id}
+        select * from login where id = #{id} limit 1
+    </select>
+    <!-- 根据用户名获取用户信息 -->
+    <select id="findUserByUsername" parameterType="com.zk.pojo.Login" resultType="com.zk.pojo.Login">
+        select * from login where username = #{username} limit 1
     </select>
     <!-- 查询用户list -->
     <select id="list" resultType="com.zk.pojo.Login">
@@ -19,9 +23,9 @@
         </selectKey>
         insert into
         login
-          (loginname,password,role_id,real_name,telephone,bz,del_flag,create_by,create_date,update_by,update_date)
+          (username,password,role_id,real_name,telephone,bz,del_flag,create_by,create_date,update_by,update_date)
         value
-          (#{loginname},#{password},#{roleId},#{realName},#{telephone},#{bz},#{delFlag},#{createBy},new Date(),#{updateBy},new Date());
+          (#{username},#{password},#{roleId},#{realName},#{telephone},#{bz},#{delFlag},#{createBy},new Date(),#{updateBy},new Date());
     </insert>
     <!-- 根据id删除用户信息 -->
     <delete id="delete" parameterType="int">
@@ -32,7 +36,7 @@
         update
             login
         set
-            loginname=#{loginname},
+            username=#{username},
             password=#{password},
             role_id=#{roleId},
             real_name=#{realName},

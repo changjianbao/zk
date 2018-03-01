@@ -14,6 +14,7 @@ import java.util.List;
 public interface LoginDao {
     List<Login> list();
     Login findById(Integer id);
+    Login findUserByUsername(Login login);
     int insert(Login user);
     int update(Login user);
     int delete(Integer id);
