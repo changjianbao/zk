@@ -70,7 +70,6 @@ layui.use(['jquery','common','layer','form','larryMenu'],function(){
     //表单提交操作
     function  submit($,params) {
         $.post('/doLogin',params,function(res){
-            console.log(22222222222222);
             if(res.status==1){
                 window.location.href =  "index.html";
             }else{
@@ -112,8 +111,7 @@ layui.use(['jquery','common','layer','form','larryMenu'],function(){
     
   //js获取项目根路径，如： http://localhost:8083/uimcardprj  
     function getRootPath(){
-        console.log(111111111111111);
-        //获取当前网址，如： http://localhost:8083/uimcardprj/share/meun.jsp  
+        //获取当前网址，如： http://localhost:8083/uimcardprj/share/meun.jsp
         var curWwwPath=window.document.location.href;  
         //获取主机地址之后的目录，如： /uimcardprj/share/meun.jsp  
         var pathName=window.document.location.pathname;  

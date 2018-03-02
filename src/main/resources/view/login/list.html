@@ -16,16 +16,16 @@
 <link rel="Shortcut Icon" href="/favicon.ico" />
 <!-- load css -->
 <link rel="stylesheet" type="text/css"
-	href="../../static/larryms/common/frame/layui/css/layui.css"
+	href="../larryms/common/frame/layui/css/layui.css"
 	media="all">
 <link rel="stylesheet" type="text/css"
-	href="../../static/larryms/common/css/gobal.css" media="all">
+	href="../larryms/common/css/gobal.css" media="all">
 <link rel="stylesheet" type="text/css"
-	href="../../static/larryms/common/css/animate.css" media="all">
+	href="../larryms/common/css/animate.css" media="all">
 <link rel="stylesheet" type="text/css"
-	href="../../static/larryms/backstage/css/common.css" media="all">
+	href="../larryms/backstage/css/common.css" media="all">
 <link rel="stylesheet" type="text/css"
-	href="../../static/larryms/backstage/css/sysconf.css" media="all">
+	href="../larryms/backstage/css/sysconf.css" media="all">
 </head>
 </head>
 <body>
@@ -105,27 +105,27 @@
 	</div>
 	<!-- 加载js文件 -->
 	<script type="text/javascript"
-		src="../../static/larryms/common/frame/layui/layui.js"></script>
+		src="../larryms/common/frame/layui/layui.js"></script>
 
-	#[[
-	<script type="text/html" id="barDemo">
-  		<a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
-  		<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-  		<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-	</script>
-	
-	<script type="text/html" id="titleTpl">
-     {{#  if(d.gender==0){ }}
-                          女
-     {{#  } else { }}
-                          男
-     {{#  } }}
-	</script>
-	]]#
+	<!--#[[-->
+	<!--<script type="text/html" id="barDemo">-->
+  		<!--<a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>-->
+  		<!--<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>-->
+  		<!--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>-->
+	<!--</script>-->
+	<!---->
+	<!--<script type="text/html" id="titleTpl">-->
+     <!--{{#  if(d.gender==0){ }}-->
+                          <!--女-->
+     <!--{{#  } else { }}-->
+                          <!--男-->
+     <!--{{#  } }}-->
+	<!--</script>-->
+	<!--]]#-->
 	
 <script>
 layui.config({
-	base: '../../static/larryms/common/lib/'
+	base: '../larryms/common/lib/'
 });
 layui.use(['jquery','table','layer'], function(){
 	var $ = layui.$,
@@ -136,7 +136,7 @@ layui.use(['jquery','table','layer'], function(){
     var data = obj.data; //获得当前行数据
     var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
     var tr = obj.tr; //获得当前行 tr 的DOM对象
-   
+
     if(layEvent === 'detail'){ //查看
       //do somehing
       console.log(tr)
@@ -148,14 +148,14 @@ layui.use(['jquery','table','layer'], function(){
       });
     } else if(layEvent === 'edit'){ //编辑
       //do something
-      
+
       //同步更新缓存对应的值
       obj.update({
     	  userName: '123'
       });
     }
   });
-  
+
   //第一个实例
   table.render({
 	id: 'idTest',
@@ -168,8 +168,8 @@ layui.use(['jquery','table','layer'], function(){
       {field: 'id', title: 'ID', width:"10%", sort: true, fixed: 'left',type:'checkbox'}
       ,{field: 'userName', title: '用户名', width:"20%"}
       ,{field: 'gender', title: '性别', width:"20%", sort: true,templet: '#titleTpl'}
-      ,{field: 'realName', title: '真实姓名', width:"20%"} 
-      ,{title: '操作',width:"30%",toolbar: '#barDemo'} 
+      ,{field: 'realName', title: '真实姓名', width:"20%"}
+      ,{title: '操作',width:"30%",toolbar: '#barDemo'}
     ]]
   });
   //点击新增按钮，弹出新增页面
@@ -194,7 +194,7 @@ layui.use(['jquery','table','layer'], function(){
   //监听删除
   $('#del').on('click',function(){
 	  var checkStatus = table.checkStatus('idTest'); //test即为基础参数id对应的值
-	  
+
 	  console.log(checkStatus.data) //获取选中行的数据
 	  console.log(checkStatus.data.length) //获取选中行数量，可作为是否有选中行的条件
 	  console.log(checkStatus.isAll ) //表格是否全选

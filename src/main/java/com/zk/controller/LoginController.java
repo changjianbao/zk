@@ -8,6 +8,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
@@ -25,13 +26,31 @@ public class LoginController {
     private LoginService loginService;
 
     /**
-     * 编辑
+     * 前往用户列表页面
+     * @return
+     */
+    @RequestMapping(value="/list")
+    public ModelAndView list() {
+        ModelAndView mv =new ModelAndView("login/list.html");
+        return mv;
+    }
+    /**
+     * 前往用户编辑页面
+     * @return
+     */
+    @RequestMapping(value="/edit")
+    public ModelAndView edit() {
+        ModelAndView mv =new ModelAndView("login/edit.html");
+        return mv;
+    }
+    /**
+     * 编辑保存
      * @param login
      * @return
      * @throws UnsupportedEncodingException
      * @throws NoSuchAlgorithmException
      */
-    @RequestMapping(value="/edit")
+    @RequestMapping(value="/save")
     public @ResponseBody JSONObject list(Login login) throws UnsupportedEncodingException, NoSuchAlgorithmException {
         //返回结果
         JSONObject result=new JSONObject();
