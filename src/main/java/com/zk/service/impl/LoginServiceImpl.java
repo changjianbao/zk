@@ -47,6 +47,16 @@ public class LoginServiceImpl implements LoginService {
     }
 
     /**
+     * 查询相同用户名是否存在多条记录
+     * @param login
+     * @return
+     */
+    @Override
+    public Login findDuplicateName(Login login) {
+        return loginDao.findDuplicateName(login);
+    }
+
+    /**
      * 新增
      * @param user
      * @return

@@ -4,19 +4,19 @@ import java.util.Date;
 
 public class Menu {
 
-  private int id;
+  private Integer id;
   private String name;
-  private int parentId;
+  private Integer parentId;
   private String url;
-  private int orders;
+  private Integer orders;
   private String sysId;
   private String bz;
-  private int delFlag;
-  private int createBy;
+  private Integer delFlag;
+  private Integer createBy;
   private Date createDate;
-  private int updateBy;
+  private Integer updateBy;
   private Date updateDate;
-  private int isFunctionMenu;
+  private Integer isFunctionMenu;
   private String menuIcon;
 
 

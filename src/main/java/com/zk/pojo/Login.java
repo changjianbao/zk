@@ -4,26 +4,26 @@ import java.util.Date;
 
 public class Login {
 
-  private int id;
+  private Integer id;
   private String username;
   private String password;
   private String roleId;
   private String realName;
   private String telephone;
   private String bz;
-  private int delFlag;
-  private int createBy;
+  private Integer delFlag;
+  private Integer createBy;
   private Date createDate;
-  private int updateBy;
+  private Integer updateBy;
   private Date updateDate;
-  private int sort;
+  private Integer identity;
 
 
-  public int getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
@@ -81,20 +81,20 @@ public class Login {
   }
 
 
-  public int getDelFlag() {
+  public Integer getDelFlag() {
     return delFlag;
   }
 
-  public void setDelFlag(int delFlag) {
+  public void setDelFlag(Integer delFlag) {
     this.delFlag = delFlag;
   }
 
 
-  public int getCreateBy() {
+  public Integer getCreateBy() {
     return createBy;
   }
 
-  public void setCreateBy(int createBy) {
+  public void setCreateBy(Integer createBy) {
     this.createBy = createBy;
   }
 
@@ -108,11 +108,11 @@ public class Login {
   }
 
 
-  public int getUpdateBy() {
+  public Integer getUpdateBy() {
     return updateBy;
   }
 
-  public void setUpdateBy(int updateBy) {
+  public void setUpdateBy(Integer updateBy) {
     this.updateBy = updateBy;
   }
 
@@ -125,13 +125,11 @@ public class Login {
     this.updateDate = updateDate;
   }
 
-
-  public int getSort() {
-    return sort;
+  public Integer getIdentity() {
+    return identity;
   }
 
-  public void setSort(int sort) {
-    this.sort = sort;
+  public void setIdentity(Integer identity) {
+    this.identity = identity;
   }
-
 }

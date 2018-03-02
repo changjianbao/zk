@@ -7,7 +7,7 @@ public class SysMenu {
   private String id;
   private String name;
   private String url;
-  private int sequence;
+  private Integer sequence;
   private String code;
   private String bz;
   private String delFlag;
@@ -46,11 +46,11 @@ public class SysMenu {
   }
 
 
-  public int getSequence() {
+  public Integer getSequence() {
     return sequence;
   }
 
-  public void setSequence(int sequence) {
+  public void setSequence(Integer sequence) {
     this.sequence = sequence;
   }
 

@@ -54,20 +54,20 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>javax.servlet</groupId>-->
+			<!--<artifactId>jstl</artifactId>-->
+		<!--</dependency>-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<!--springboot内嵌的tomcat；告诉spring-boot tomcat相关jar包用外部的，不要打进去-->
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat.embed</groupId>
-			<artifactId>tomcat-embed-jasper</artifactId>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.apache.tomcat.embed</groupId>-->
+			<!--<artifactId>tomcat-embed-jasper</artifactId>-->
+		<!--</dependency>-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -87,7 +87,11 @@
 			<artifactId>fastjson</artifactId>
 			<version>1.2.31</version>
 		</dependency>
-
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
+		</dependency>
 		<!--<dependency>-->
 			<!--<groupId>org.eclipse.jdt.core.compiler</groupId>-->
 			<!--<artifactId>ecj</artifactId>-->
@@ -109,6 +113,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-
 </project>

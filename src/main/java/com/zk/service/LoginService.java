@@ -11,6 +11,7 @@ public interface LoginService {
     List<Login> list();
     Login findById(Integer id);
     Login findUserByUsername(Login login);
+    Login findDuplicateName(Login login);
     int insert(Login user);
     void update(Login user);
     void delete(Integer id);

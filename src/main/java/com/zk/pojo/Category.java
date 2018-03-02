@@ -4,28 +4,28 @@ import java.util.Date;
 
 public class Category {
 
-  private int id;
+  private Integer id;
   private String name;
-  private int parentId;
+  private Integer parentId;
   private String url;
-  private int sort;
+  private Integer sort;
   private String sysId;
   private String bz;
-  private int delFlag;
-  private int createBy;
+  private Integer delFlag;
+  private Integer createBy;
   private Date createDate;
-  private int updateBy;
+  private Integer updateBy;
   private Date updateDate;
-  private int isFunctionMenu;
+  private Integer isFunctionMenu;
   private String img;
   private double price;
 
 
-  public int getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
@@ -39,11 +39,11 @@ public class Category {
   }
 
 
-  public int getParentId() {
+  public Integer getParentId() {
     return parentId;
   }
 
-  public void setParentId(int parentId) {
+  public void setParentId(Integer parentId) {
     this.parentId = parentId;
   }
 
@@ -76,20 +76,20 @@ public class Category {
   }
 
 
-  public int getDelFlag() {
+  public Integer getDelFlag() {
     return delFlag;
   }
 
-  public void setDelFlag(int delFlag) {
+  public void setDelFlag(Integer delFlag) {
     this.delFlag = delFlag;
   }
 
 
-  public int getCreateBy() {
+  public Integer getCreateBy() {
     return createBy;
   }
 
-  public void setCreateBy(int createBy) {
+  public void setCreateBy(Integer createBy) {
     this.createBy = createBy;
   }
 
@@ -103,11 +103,11 @@ public class Category {
   }
 
 
-  public int getUpdateBy() {
+  public Integer getUpdateBy() {
     return updateBy;
   }
 
-  public void setUpdateBy(int updateBy) {
+  public void setUpdateBy(Integer updateBy) {
     this.updateBy = updateBy;
   }
 
@@ -121,19 +121,19 @@ public class Category {
   }
 
 
-  public int getIsFunctionMenu() {
+  public Integer getIsFunctionMenu() {
     return isFunctionMenu;
   }
 
-  public void setIsFunctionMenu(int isFunctionMenu) {
+  public void setIsFunctionMenu(Integer isFunctionMenu) {
     this.isFunctionMenu = isFunctionMenu;
   }
 
-  public int getSort() {
+  public Integer getSort() {
     return sort;
   }
 
-  public void setSort(int sort) {
+  public void setSort(Integer sort) {
     this.sort = sort;
   }
 

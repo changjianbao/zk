@@ -4,22 +4,22 @@ import java.util.Date;
 
 public class Role {
 
-  private int id;
+  private Integer id;
   private String name;
   private String bz;
-  private int type;
-  private int delFlag;
-  private int createBy;
+  private Integer type;
+  private Integer delFlag;
+  private Integer createBy;
   private Date createDate;
-  private int updateBy;
+  private Integer updateBy;
   private Date updateDate;
 
 
-  public int getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
@@ -42,29 +42,29 @@ public class Role {
   }
 
 
-  public int getType() {
+  public Integer getType() {
     return type;
   }
 
-  public void setType(int type) {
+  public void setType(Integer type) {
     this.type = type;
   }
 
 
-  public int getDelFlag() {
+  public Integer getDelFlag() {
     return delFlag;
   }
 
-  public void setDelFlag(int delFlag) {
+  public void setDelFlag(Integer delFlag) {
     this.delFlag = delFlag;
   }
 
 
-  public int getCreateBy() {
+  public Integer getCreateBy() {
     return createBy;
   }
 
-  public void setCreateBy(int createBy) {
+  public void setCreateBy(Integer createBy) {
     this.createBy = createBy;
   }
 
@@ -78,11 +78,11 @@ public class Role {
   }
 
 
-  public int getUpdateBy() {
+  public Integer getUpdateBy() {
     return updateBy;
   }
 
-  public void setUpdateBy(int updateBy) {
+  public void setUpdateBy(Integer updateBy) {
     this.updateBy = updateBy;
   }
 

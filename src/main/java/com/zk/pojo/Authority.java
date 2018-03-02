@@ -4,40 +4,40 @@ import java.util.Date;
 
 public class Authority {
 
-  private int id;
-  private int roleId;
-  private int menuId;
+  private Integer id;
+  private Integer roleId;
+  private Integer menuId;
   private String bz;
-  private int createBy;
+  private Integer createBy;
   private Date createDate;
-  private int updateBy;
+  private Integer updateBy;
   private Date updateDate;
-  private int delFlag;
+  private Integer delFlag;
 
 
-  public int getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
 
-  public int getRoleId() {
+  public Integer getRoleId() {
     return roleId;
   }
 
-  public void setRoleId(int roleId) {
+  public void setRoleId(Integer roleId) {
     this.roleId = roleId;
   }
 
 
-  public int getMenuId() {
+  public Integer getMenuId() {
     return menuId;
   }
 
-  public void setMenuId(int menuId) {
+  public void setMenuId(Integer menuId) {
     this.menuId = menuId;
   }
 
@@ -51,11 +51,11 @@ public class Authority {
   }
 
 
-  public int getCreateBy() {
+  public Integer getCreateBy() {
     return createBy;
   }
 
-  public void setCreateBy(int createBy) {
+  public void setCreateBy(Integer createBy) {
     this.createBy = createBy;
   }
 
@@ -69,11 +69,11 @@ public class Authority {
   }
 
 
-  public int getUpdateBy() {
+  public Integer getUpdateBy() {
     return updateBy;
   }
 
-  public void setUpdateBy(int updateBy) {
+  public void setUpdateBy(Integer updateBy) {
     this.updateBy = updateBy;
   }
 
@@ -87,11 +87,11 @@ public class Authority {
   }
 
 
-  public int getDelFlag() {
+  public Integer getDelFlag() {
     return delFlag;
   }
 
-  public void setDelFlag(int delFlag) {
+  public void setDelFlag(Integer delFlag) {
     this.delFlag = delFlag;
   }
 

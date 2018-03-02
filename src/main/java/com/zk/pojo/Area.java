@@ -6,11 +6,11 @@ public class Area {
 
   private String code;
   private String name;
-  private int level;
+  private Integer level;
   private String parentCode;
-  private int leaf;
-  private int status;
-  private int updaterId;
+  private Integer leaf;
+  private Integer status;
+  private Integer updaterId;
   private Date created;
   private Date updated;
   private String simpleName;
@@ -35,11 +35,11 @@ public class Area {
   }
 
 
-  public int getLevel() {
+  public Integer getLevel() {
     return level;
   }
 
-  public void setLevel(int level) {
+  public void setLevel(Integer level) {
     this.level = level;
   }
 
@@ -53,29 +53,29 @@ public class Area {
   }
 
 
-  public int getLeaf() {
+  public Integer getLeaf() {
     return leaf;
   }
 
-  public void setLeaf(int leaf) {
+  public void setLeaf(Integer leaf) {
     this.leaf = leaf;
   }
 
 
-  public int getStatus() {
+  public Integer getStatus() {
     return status;
   }
 
-  public void setStatus(int status) {
+  public void setStatus(Integer status) {
     this.status = status;
   }
 
 
-  public int getUpdaterId() {
+  public Integer getUpdaterId() {
     return updaterId;
   }
 
-  public void setUpdaterId(int updaterId) {
+  public void setUpdaterId(Integer updaterId) {
     this.updaterId = updaterId;
   }
 

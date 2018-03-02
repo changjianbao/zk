@@ -4,16 +4,37 @@
 
 <!-- namespace必须指向Dao接口 -->
 <mapper namespace="com.zk.dao.system.LoginDao">
+
+    <resultMap id="BaseResultMap" type="com.zk.pojo.Login">
+        <id column="id"                     jdbcType="INTEGER"      property="id" />
+        <result column="username"           jdbcType="VARCHAR"      property="username" />
+        <result column="password"           jdbcType="VARCHAR"      property="password" />
+        <result column="role_id"            jdbcType="VARCHAR"      property="roleId" />
+        <result column="real_name"          jdbcType="VARCHAR"      property="realName" />
+        <result column="telephone"          jdbcType="VARCHAR"      property="telephone" />
+        <result column="bz"                 jdbcType="VARCHAR"      property="bz" />
+        <result column="del_flag"           jdbcType="INTEGER"      property="delFlag" />
+        <result column="create_by"          jdbcType="INTEGER"      property="createBy" />
+        <result column="create_date"        jdbcType="TIMESTAMP"    property="createDate" />
+        <result column="update_by"          jdbcType="INTEGER"      property="updateBy" />
+        <result column="update_date"        jdbcType="TIMESTAMP"    property="updateDate" />
+        <result column="identity"           jdbcType="INTEGER"      property="identity" />
+    </resultMap>
+
     <!-- 根据id获取用户信息 -->
     <select id="findUserById" parameterType="int" resultType="com.zk.pojo.Login">
         select * from login where id = #{id} limit 1
     </select>
+    <!-- 查询相同用户名是否存在多条记录 -->
+    <select id="findDuplicateName" parameterType="com.zk.pojo.Login" resultType="com.zk.pojo.Login">
+        select * from login where username=#{username} or telephone=#{telephone} and id != #{id} limit 1
+    </select>
     <!-- 根据用户名获取用户信息 -->
     <select id="findUserByUsername" parameterType="com.zk.pojo.Login" resultType="com.zk.pojo.Login">
-        select * from login where username = #{username} limit 1
+        select * from login where username=#{username} or telephone=#{telephone} limit 1
     </select>
     <!-- 查询用户list -->
-    <select id="list" resultType="com.zk.pojo.Login">
+    <select id="list" resultMap="BaseResultMap">
         select * from login
     </select>
     <!-- 添加用户信息 -->
@@ -23,9 +44,9 @@
         </selectKey>
         insert into
         login
-          (username,password,role_id,real_name,telephone,bz,del_flag,create_by,create_date,update_by,update_date)
+          (username,password,role_id,real_name,telephone,bz,del_flag,create_by,create_date,update_by,update_date,identity)
         value
-          (#{username},#{password},#{roleId},#{realName},#{telephone},#{bz},#{delFlag},#{createBy},new Date(),#{updateBy},new Date());
+          (#{username},#{password},#{roleId},#{realName},#{telephone},#{bz},#{delFlag},#{createBy},new Date(),#{updateBy},new Date(),#{identity});
     </insert>
     <!-- 根据id删除用户信息 -->
     <delete id="delete" parameterType="int">

@@ -4,23 +4,23 @@ import java.util.Date;
 
 public class Department {
 
-  private int id;
+  private Integer id;
   private String name;
-  private int parentId;
-  private int delFlag;
-  private int createBy;
+  private Integer parentId;
+  private Integer delFlag;
+  private Integer createBy;
   private Date createDate;
-  private int updateBy;
+  private Integer updateBy;
   private Date updateDate;
   private String bz;
-  private int sort;
+  private Integer sort;
 
 
-  public int getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
@@ -34,29 +34,29 @@ public class Department {
   }
 
 
-  public int getParentId() {
+  public Integer getParentId() {
     return parentId;
   }
 
-  public void setParentId(int parentId) {
+  public void setParentId(Integer parentId) {
     this.parentId = parentId;
   }
 
 
-  public int getDelFlag() {
+  public Integer getDelFlag() {
     return delFlag;
   }
 
-  public void setDelFlag(int delFlag) {
+  public void setDelFlag(Integer delFlag) {
     this.delFlag = delFlag;
   }
 
 
-  public int getCreateBy() {
+  public Integer getCreateBy() {
     return createBy;
   }
 
-  public void setCreateBy(int createBy) {
+  public void setCreateBy(Integer createBy) {
     this.createBy = createBy;
   }
 
@@ -70,11 +70,11 @@ public class Department {
   }
 
 
-  public int getUpdateBy() {
+  public Integer getUpdateBy() {
     return updateBy;
   }
 
-  public void setUpdateBy(int updateBy) {
+  public void setUpdateBy(Integer updateBy) {
     this.updateBy = updateBy;
   }
 
@@ -97,11 +97,11 @@ public class Department {
   }
 
 
-  public int getSort() {
+  public Integer getSort() {
     return sort;
   }
 
-  public void setSort(int sort) {
+  public void setSort(Integer sort) {
     this.sort = sort;
   }
 

@@ -4,28 +4,28 @@ import java.util.Date;
 
 public class User {
 
-  private int id;
+  private Integer id;
   private String name;
   private String card;
-  private int age;
-  private int sex;
+  private Integer age;
+  private Integer sex;
   private String phone;
-  private int delFlag;
+  private Integer delFlag;
   private String bz;
   private String createBy;
   private Date createDate;
   private String updateBy;
   private Date updateDate;
-  private int nation;
+  private Integer nation;
   private String jiguan;
   private String emailNum;
 
 
-  public int getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
@@ -48,20 +48,20 @@ public class User {
   }
 
 
-  public int getAge() {
+  public Integer getAge() {
     return age;
   }
 
-  public void setAge(int age) {
+  public void setAge(Integer age) {
     this.age = age;
   }
 
 
-  public int getSex() {
+  public Integer getSex() {
     return sex;
   }
 
-  public void setSex(int sex) {
+  public void setSex(Integer sex) {
     this.sex = sex;
   }
 
@@ -75,11 +75,11 @@ public class User {
   }
 
 
-  public int getDelFlag() {
+  public Integer getDelFlag() {
     return delFlag;
   }
 
-  public void setDelFlag(int delFlag) {
+  public void setDelFlag(Integer delFlag) {
     this.delFlag = delFlag;
   }
 
@@ -129,11 +129,11 @@ public class User {
   }
 
 
-  public int getNation() {
+  public Integer getNation() {
     return nation;
   }
 
-  public void setNation(int nation) {
+  public void setNation(Integer nation) {
     this.nation = nation;
   }
 
