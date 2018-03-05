@@ -19,6 +19,7 @@
         <result column="update_by"          jdbcType="INTEGER"      property="updateBy" />
         <result column="update_date"        jdbcType="TIMESTAMP"    property="updateDate" />
         <result column="identity"           jdbcType="INTEGER"      property="identity" />
+        <result column="sex"                jdbcType="INTEGER"      property="sex" />
     </resultMap>
 
     <!-- 根据id获取用户信息 -->
@@ -34,8 +35,10 @@
         select * from login where username=#{username} or telephone=#{telephone} limit 1
     </select>
     <!-- 查询用户list -->
-    <select id="list" resultMap="BaseResultMap">
+    <select id="list" parameterType="java.util.HashMap" resultMap="BaseResultMap">
         select * from login
+        where 1=1
+        limit #{start},#{length}
     </select>
     <!-- 添加用户信息 -->
     <insert id="insert" parameterType="com.zk.pojo.Login">
@@ -44,9 +47,9 @@
         </selectKey>
         insert into
         login
-          (username,password,role_id,real_name,telephone,bz,del_flag,create_by,create_date,update_by,update_date,identity)
+          (username,password,role_id,real_name,telephone,bz,del_flag,create_by,create_date,update_by,update_date,identity,sex)
         value
-          (#{username},#{password},#{roleId},#{realName},#{telephone},#{bz},#{delFlag},#{createBy},new Date(),#{updateBy},new Date(),#{identity});
+          (#{username},#{password},#{roleId},#{realName},#{telephone},#{bz},#{delFlag},#{createBy},new Date(),#{updateBy},new Date(),#{identity},#{sex});
     </insert>
     <!-- 根据id删除用户信息 -->
     <delete id="delete" parameterType="int">
@@ -65,7 +68,8 @@
             bz=#{bz},
             del_flag=#{delFlag},
             update_by=#{updateBy},
-            update_date=#{updateDate}
+            update_date=#{updateDate},
+            sex=#{sex}
         where id=#{id}
     </update>
 </mapper>

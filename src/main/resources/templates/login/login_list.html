@@ -36,44 +36,8 @@
 				
 				<section class="larry-body">
 					<div class="larry-body-header">
-						<span class="tit">LarryCMS系统配置管理 ：</span>
+						<span class="tit">用户管理 ：</span>
 					</div>
-					<div class="larry-body-content clearfix">
-						<div class="larrycms-btn-box">
-							<div  class="larry-add-edit layui-btn inline-block"
-								data-url="/admin/conf/add.html">
-								<i data-icon="larry-xinjian" class="larry-icon inline-block">&#xe6dc;</i>新增
-							</div>
-							
-							<form action=""
-								class="layui-form larry-form-tit clearfix inline-block">
-								<div class="larry-search">
-									<div class="layui-input-inline">
-										<input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input"> 
-									</div>
-								</div>
-								<div class="larry-search">
-									<div class="layui-input-inline">
-										<input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input"> 
-									</div>
-								</div>
-								<div class="larry-classify">
-									<div class="layui-input-inline">
-										<label class="layui-form-label">配置分组</label>
-										<div class="layui-input-inline">
-											<select name="conf_group">
-												<option value="" selected="">请选择配置分组</option>
-
-												<option value="all">全部分组</option>
-
-												<option value="">tes</option>
-
-											</select>
-										</div>
-									</div>
-								</div>
-							</form>
-						</div>
 				</section>
 			</div>
 			<div
@@ -107,21 +71,12 @@
 	<script type="text/javascript"
 		src="../larryms/common/frame/layui/layui.js"></script>
 
-	<!--#[[-->
-	<!--<script type="text/html" id="barDemo">-->
+	<script type="text/html" id="barDemo">
   		<!--<a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>-->
-  		<!--<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>-->
-  		<!--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>-->
-	<!--</script>-->
-	<!---->
-	<!--<script type="text/html" id="titleTpl">-->
-     <!--{{#  if(d.gender==0){ }}-->
-                          <!--女-->
-     <!--{{#  } else { }}-->
-                          <!--男-->
-     <!--{{#  } }}-->
-	<!--</script>-->
-	<!--]]#-->
+  		<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  		<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+	</script>
+	<script type="text/html" id="titleTpl"></script>
 	
 <script>
 layui.config({
@@ -160,14 +115,14 @@ layui.use(['jquery','table','layer'], function(){
   table.render({
 	id: 'idTest',
     elem: '#demo'
-    ,url: '/user/getUserList' //数据接口
+    ,url: '/login/getList' //数据接口
     ,page: true //开启分页
     ,limit:10
     ,limits:[10,30,60,90]
     ,cols: [[ //表头
-      {field: 'id', title: 'ID', width:"10%", sort: true, fixed: 'left',type:'checkbox'}
-      ,{field: 'userName', title: '用户名', width:"20%"}
-      ,{field: 'gender', title: '性别', width:"20%", sort: true,templet: '#titleTpl'}
+       {field: 'id', title: 'ID', width:"10%", sort: true, fixed: 'left',type:'checkbox'}
+      ,{field: 'username', title: '用户名', width:"20%"}
+      ,{field: 'sex', title: '性别', width:"20%", sort: true,templet: '#titleTpl'}
       ,{field: 'realName', title: '真实姓名', width:"20%"}
       ,{title: '操作',width:"30%",toolbar: '#barDemo'}
     ]]
@@ -181,7 +136,7 @@ layui.use(['jquery','table','layer'], function(){
 	      shade: false,
 	      maxmin: true, //开启最大化最小化按钮
 	      area: ['893px', '600px'],
-	      content: '/user/toUserEditUI'
+	      content: '/login/edit'
 	    });
 	  layer.full(index);
   });

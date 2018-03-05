@@ -3,6 +3,7 @@ package com.zk.dao.system;
 import com.zk.pojo.Login;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ import java.util.List;
 
 @Mapper
 public interface LoginDao {
-    List<Login> list();
+    List<Login> list(HashMap map);
     Login findById(Integer id);
     Login findUserByUsername(Login login);
     Login findDuplicateName(Login login);

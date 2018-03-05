@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +27,7 @@ import java.util.List;
  * Created by mj on 2017/7/17.
  */
 
-@Controller
+@RestController
 @RequestMapping(value="/")
 public class IndexController {
 
@@ -41,7 +42,7 @@ public class IndexController {
      */
     @RequestMapping(value="/")
     public ModelAndView login() {
-        ModelAndView mv =new ModelAndView("login.html");
+        ModelAndView mv =new ModelAndView("login");
         return mv;
     }
 

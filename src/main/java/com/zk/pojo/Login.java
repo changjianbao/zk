@@ -17,6 +17,7 @@ public class Login {
   private Integer updateBy;
   private Date updateDate;
   private Integer identity;
+  private Integer sex;
 
 
   public Integer getId() {
@@ -131,5 +132,13 @@ public class Login {
 
   public void setIdentity(Integer identity) {
     this.identity = identity;
+  }
+
+  public Integer getSex() {
+    return sex;
+  }
+
+  public void setSex(Integer sex) {
+    this.sex = sex;
   }
 }

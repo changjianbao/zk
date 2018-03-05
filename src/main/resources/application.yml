@@ -47,8 +47,15 @@ spring:
       maxFileSize: 100Mb
       maxRequestSize: 100Mb
   resources: # 指定静态资源的路径
-          static-locations: classpath:/static/,classpath:/view/
-
+          static-locations: classpath:/static/,classpath:/templates/
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+#    mode: HTML5
+#    encoding: UTF-8
+#    content-type: text/html # ;charset=<encoding> is added
+#    cache: true # set to false for hot refresh
 debug: false
 # --mybatis相关配置
 mybatis:

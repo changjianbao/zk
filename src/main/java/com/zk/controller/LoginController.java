@@ -4,14 +4,19 @@ import com.alibaba.fastjson.JSONObject;
 import com.zk.pojo.Login;
 import com.zk.service.LoginService;
 import com.zk.util.EncoderByMd5;
+import com.zk.util.TableData;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 用户管理
@@ -39,9 +44,35 @@ public class LoginController {
      * @return
      */
     @RequestMapping(value="/edit")
-    public ModelAndView edit() {
-        ModelAndView mv =new ModelAndView("login_edit.html");
+    public ModelAndView edit(String id,Model model) {
+        model.addAttribute("hello","hello");
+        ModelAndView mv =new ModelAndView("login_edit.html","model",model);
         return mv;
+    }
+    /**
+     * 查询列表数据
+     * @return
+     */
+    @RequestMapping(value="/getList")
+    public @ResponseBody Object getList(String pageNumber,String pageSize) {
+        //返回结果
+        JSONObject result=new JSONObject();
+        //分页
+        Integer start=0;
+        if(pageNumber!=null){
+            start=Integer.parseInt(pageNumber);
+        }
+        Integer length=10;
+        if(pageNumber!=null){
+            length=Integer.valueOf(start/Integer.parseInt(pageNumber)+1);
+        }
+        HashMap map = new HashMap();
+        map.put("start",start);
+        map.put("length",length);
+
+        List<Login> list = loginService.list(map);
+
+        return TableData.getLayUITable(0, "", list.size(), list);
     }
     /**
      * 编辑保存

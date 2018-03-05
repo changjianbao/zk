@@ -6,6 +6,7 @@ import com.zk.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -23,8 +24,8 @@ public class LoginServiceImpl implements LoginService {
      * @return
      */
     @Override
-    public List<Login> list() {
-        return loginDao.list();
+    public List<Login> list(HashMap map) {
+        return loginDao.list(map);
     }
     /**
      * 根据ID查询一条记录
