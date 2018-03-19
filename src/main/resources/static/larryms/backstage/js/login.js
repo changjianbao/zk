@@ -19,7 +19,7 @@ layui.use(['jquery','common','layer','form','larryMenu'],function(){
           $(this).attr('placeholder',placeholder);
     });
     
-    common.larryCmsLoadJq('../static/larryms/common/plus/jquery.supersized.min.js', function() {
+    common.larryCmsLoadJq('../larryms/common/plus/jquery.supersized.min.js', function() {
         $.supersized({
             // 功能
             slide_interval: 3000,
@@ -37,11 +37,11 @@ layui.use(['jquery','common','layer','form','larryMenu'],function(){
             // 组件
             slide_links: 'blank',
             slides: [{
-                image: '../static/larryms/backstage/images/login/1.jpg'
+                image: '../larryms/backstage/images/login/1.jpg'
             }, {
-                image: '../static/larryms/backstage/images/login/2.jpg'
+                image: '../larryms/backstage/images/login/2.jpg'
             }, {
-                image: '../static/larryms/backstage/images/login/3.jpg'
+                image: '../larryms/backstage/images/login/3.jpg'
             }]
         });
     });
@@ -61,14 +61,10 @@ layui.use(['jquery','common','layer','form','larryMenu'],function(){
     //     }
     //     return false;
     // });
-    form.on('submit(submit)',function(data){
-        params=data.field;
-        submit($,params)
-        return false;
-    });
 
-    //表单提交操作
-    function  submit($,params) {
+
+    form.on('submit(submit)',function(data){
+        console.log(11111111111);
         $.post('/doLogin',params,function(res){
             if(res.status==1){
                 window.location.href =  "index.html";
@@ -78,7 +74,21 @@ layui.use(['jquery','common','layer','form','larryMenu'],function(){
                 });
             }
         })
-    }
+    });
+
+    // //表单提交操作
+    // function submit($,params) {
+    //     console.log(11111111111);
+    //     $.post('/doLogin',params,function(res){
+    //         if(res.status==1){
+    //             window.location.href =  "index.html";
+    //         }else{
+    //             layer.tips(res.msg, $('#password'), {
+    //                 tips: [3, '#FF5722']
+    //             });
+    //         }
+    //     })
+    // }
 
     // 右键菜单控制
     var larrycmsMenuData = [
@@ -93,17 +103,7 @@ layui.use(['jquery','common','layer','form','larryMenu'],function(){
                 common.larryCmsError('抱歉！暂不支持此功能，可加入LarryCMS交流群下载源码',common.larryCore.tit);
             }
         }],
-        [{
-            text: "访问larryCMS官网",
-            func: function() {
-                window.open('http://www.larrycms.com');
-            }
-        },{
-            text: "给larryMS点个赞",
-            func: function() {
-                window.open('http://fly.layui.com/case/u/109200');
-            }
-        }]
+        []
     ];
     larryMenu.ContentMenu(larrycmsMenuData,{
          name: "html" 

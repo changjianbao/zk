@@ -52,6 +52,8 @@ spring:
     cache: false
     prefix: classpath:/templates/
     suffix: .html
+    mode: LEGACYHTML5
+
 #    mode: HTML5
 #    encoding: UTF-8
 #    content-type: text/html # ;charset=<encoding> is added

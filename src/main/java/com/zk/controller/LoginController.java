@@ -36,7 +36,7 @@ public class LoginController {
      */
     @RequestMapping(value="/list")
     public ModelAndView list() {
-        ModelAndView mv =new ModelAndView("login_list.html");
+        ModelAndView mv =new ModelAndView("login/login_list");
         return mv;
     }
     /**
@@ -46,7 +46,7 @@ public class LoginController {
     @RequestMapping(value="/edit")
     public ModelAndView edit(String id,Model model) {
         model.addAttribute("hello","hello");
-        ModelAndView mv =new ModelAndView("login_edit.html","model",model);
+        ModelAndView mv =new ModelAndView("login_edit","model",model);
         return mv;
     }
     /**
