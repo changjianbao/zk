@@ -63,3 +63,4 @@ debug: false
 mybatis:
   mapper-locations: classpath:/mapper/*Mapper.xml
   type-aliases-package: com.boot.pojo
+  configLocation: classpath:mybatis.xml
