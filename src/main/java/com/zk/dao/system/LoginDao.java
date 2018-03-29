@@ -17,7 +17,7 @@ public interface LoginDao {
     Login findById(Integer id);
     Login findUserByUsername(Login login);
     Login findDuplicateName(Login login);
-    int insert(Login user);
-    int update(Login user);
-    int delete(Integer id);
+    Integer insert(Login user);
+    void update(Login user);
+    void delete(Integer id);
 }

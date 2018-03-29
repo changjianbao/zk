@@ -30,7 +30,8 @@
     			<div class="larry-body-header">
     				<span class="tit">个人信息</span>
     			</div>
-				<input type="hidden" name="id"value="" th:value="${login.id}" >
+				<input type="hidden" name="id" th:value="${login.id}" >
+				<input type="hidden" name="password" th:value="${login.password}">
     			<div class="larry-body-content clearfix">
     				<form class="layui-form" action="" method="post">
 				        <div class="layui-form-item">
@@ -79,16 +80,12 @@
         base: '../larryms/common/lib/'
     });
     layui.use(['jquery', 'layer', 'form', 'upload'], function() {
-        console.log(2222222222)
         var $ = layui.$,
             layer = layui.layer,
             form = layui.form;
 
         //监听提交
         form.on('submit(formSubmit)', function(data){
-            //layer.msg(JSON.stringify(data.field));
-            console.log(11111111111);
-            console.log(data.field);
             params=data.field;
             submit($,params)
             return false;
@@ -99,7 +96,9 @@
                 if(res.status==1){
                     layer.msg("保存成功")
                     closeWindow();
-                }
+                }else{
+                    layer.msg(res.msg)
+				}
             })
         }
         //关闭弹窗操作

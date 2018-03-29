@@ -78,8 +78,8 @@ public class LoginController {
         map.put("length",length);
 
         List<Login> list = loginService.list(map);
-
-        return TableData.getLayUITable(0, "", list.size(), list);
+        JSONObject obj=TableData.getLayUITable(0, "", list.size(), list);
+        return obj;
     }
     /**
      * 编辑保存
@@ -106,7 +106,11 @@ public class LoginController {
             if(duplicateLogin!=null){
                 result.put("msg","用户名或者电话已经存在;请重新填写");
             }else{
-                login.setPassword(EncoderByMd5.EncoderByMd5(login.getPassword()));
+                if(StringUtils.isNotBlank(login.getPassword())){
+                    login.setPassword(EncoderByMd5.EncoderByMd5(login.getPassword()));
+                }else{
+                    login.setPassword(EncoderByMd5.EncoderByMd5("123456"));
+                }
                 int i=loginService.insert(login);
                 if(i>0){
                     result.put("status",1);

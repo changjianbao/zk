@@ -16,7 +16,7 @@ public class Login {
   private Date createDate;
   private Integer updateBy;
   private Date updateDate;
-  private Integer identity;
+  private Integer shenFen;
   private Integer sex;
 
 
@@ -126,12 +126,12 @@ public class Login {
     this.updateDate = updateDate;
   }
 
-  public Integer getIdentity() {
-    return identity;
+  public Integer getShenFen() {
+    return shenFen;
   }
 
-  public void setIdentity(Integer identity) {
-    this.identity = identity;
+  public void setShenFen(Integer shenFen) {
+    this.shenFen = shenFen;
   }
 
   public Integer getSex() {

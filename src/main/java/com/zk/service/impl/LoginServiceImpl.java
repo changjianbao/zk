@@ -63,7 +63,7 @@ public class LoginServiceImpl implements LoginService {
      * @return
      */
     @Override
-    public int insert(Login user) {
+    public Integer insert(Login user) {
         return loginDao.insert(user);
     }
 
