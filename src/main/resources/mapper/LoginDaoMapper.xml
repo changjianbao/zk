@@ -23,7 +23,7 @@
     <!--</resultMap>-->
 
     <!-- 根据id获取用户信息 -->
-    <select id="findUserById" parameterType="int" resultType="com.zk.pojo.Login">
+    <select id="findById" parameterType="int" resultType="com.zk.pojo.Login">
         select * from login where id = #{id} limit 1
     </select>
     <!-- 查询相同用户名是否存在多条记录 -->

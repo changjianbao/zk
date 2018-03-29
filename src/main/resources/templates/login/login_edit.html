@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
 	<title>个人信息</title>
@@ -29,36 +30,37 @@
     			<div class="larry-body-header">
     				<span class="tit">个人信息</span>
     			</div>
+				<input type="hidden" name="id"value="" th:value="${login.id}" >
     			<div class="larry-body-content clearfix">
-    				<form class="layui-form " action="" method="post">
+    				<form class="layui-form" action="" method="post">
 				        <div class="layui-form-item">
 					        <label class="layui-form-label">用户名</label>
 					        <div class="layui-input-block">
-						        <input type="text" name="username"  autocomplete="off"  class="layui-input" value="" >
+						        <input type="text" name="username"  autocomplete="off"  class="layui-input" value="" th:value="${login.username}" >
 					        </div>
 				        </div>
 				        <div class="layui-form-item">
 				        	<label class="layui-form-label">真实姓名</label>
 				        	<div class="layui-input-block">
-				        		<input type="text" name="realName"  autocomplete="off" class="layui-input" value="">
+				        		<input type="text" name="realName"  autocomplete="off" class="layui-input" value="" th:value="${login.realName}">
 				        	</div>
 				        </div>
 				        <div class="layui-form-item">
 				        	<label class="layui-form-label">手机号码</label>
 				        	<div class="layui-input-block">
-				        		<input type="text" name="telephone"  autocomplete="off" class="layui-input" placeholder="输入手机号码">
+				        		<input type="text" name="telephone"  autocomplete="off" class="layui-input" placeholder="输入手机号码" th:value="${login.telephone}">
 				        	</div>
 				        </div>
 				        <div class="layui-form-item">
 				        	<label class="layui-form-label">性别</label>
 				        	<div class="layui-input-block">
-				        		<input type="radio" name="sex" value="1" title="男" checked=""><div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon"></i><span>男</span></div>
-				        		<input type="radio" name="sex" value="0" title="女"><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><span>女</span></div>
+								<input type="radio" name="sex" value="1" title="男" th:checked="${login.sex} == 1" >
+								<input type="radio" name="sex" value="0" title="女" th:checked="${login.sex} == 0" >
 				        	</div>
 				        </div>
 						<div class="layui-form-item">
 							<div class="layui-input-block">
-								<button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+								<button class="layui-btn" lay-submit="" lay-filter="formSubmit">立即提交</button>
 								<button type="reset" class="layui-btn layui-btn-primary">重置</button>
 							</div>
 						</div>
@@ -71,12 +73,13 @@
 <!-- 加载js文件 -->
 <script type="text/javascript" src="../larryms/common/frame/layui/layui.js"></script>
 <script type="text/javascript" src="../larryms/backstage/js/common.js"></script>
-<script type="text/javascript" src="../larryms/backstage/js/mypanel.js"></script>
+<!--<script type="text/javascript" src="../larryms/backstage/js/mypanel.js"></script>-->
 <script>
     layui.config({
         base: '../larryms/common/lib/'
     });
     layui.use(['jquery', 'layer', 'form', 'upload'], function() {
+        console.log(2222222222)
         var $ = layui.$,
             layer = layui.layer,
             form = layui.form;
@@ -84,7 +87,8 @@
         //监听提交
         form.on('submit(formSubmit)', function(data){
             //layer.msg(JSON.stringify(data.field));
-            //console.log(data.field)
+            console.log(11111111111);
+            console.log(data.field);
             params=data.field;
             submit($,params)
             return false;

@@ -11,14 +11,14 @@ public class MyInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
-//        Object obj = request.getSession().getAttribute("login");
-//        System.out.print(request.getRequestURI());
-//        if (!(request.getRequestURI().equals("/")) && !(request.getRequestURI().equals("/doLogin"))) {
-//            if(obj == null || !(obj instanceof Login)){
-//                response.sendRedirect("/");
-//                return false;
-//            }
-//        }
+        Object obj = request.getSession().getAttribute("login");
+        System.out.print(request.getRequestURI());
+        if (!(request.getRequestURI().equals("/")) && !(request.getRequestURI().equals("/doLogin"))) {
+            if(obj == null || !(obj instanceof Login)){
+                response.sendRedirect("/");
+                return false;
+            }
+        }
         return true;
     }
 

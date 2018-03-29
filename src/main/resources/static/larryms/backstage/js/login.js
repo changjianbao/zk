@@ -46,25 +46,13 @@ layui.use(['jquery','common','layer','form','larryMenu'],function(){
         });
     });
 
-    // form.on('submit(submit)',function(data){
-    //     console.log(data);
-    //     if(data.field.user_name == 'larry' && data.field.password == 'larry'){
-    //         layer.msg('登录成功',{icon:1,time:1000});
-    //         setTimeout(function(){
-    //             window.location.href =  "index.html";
-    //         },1000);
-    //
-    //     }else{
-    //         layer.tips('用户名:larry 密码：larry 无需输入验证码', $('#password'), {
-    //            tips: [3, '#FF5722']
-    //         });
-    //     }
-    //     return false;
-    // });
-
-
     form.on('submit(submit)',function(data){
-        console.log(11111111111);
+        params=data.field;
+        submit($,params)
+        return false;
+    });
+    //表单提交操作
+    function  submit($,params) {
         $.post('/doLogin',params,function(res){
             if(res.status==1){
                 window.location.href =  "index.html";
@@ -74,22 +62,7 @@ layui.use(['jquery','common','layer','form','larryMenu'],function(){
                 });
             }
         })
-    });
-
-    // //表单提交操作
-    // function submit($,params) {
-    //     console.log(11111111111);
-    //     $.post('/doLogin',params,function(res){
-    //         if(res.status==1){
-    //             window.location.href =  "index.html";
-    //         }else{
-    //             layer.tips(res.msg, $('#password'), {
-    //                 tips: [3, '#FF5722']
-    //             });
-    //         }
-    //     })
-    // }
-
+    }
     // 右键菜单控制
     var larrycmsMenuData = [
         [{

@@ -45,8 +45,15 @@ public class LoginController {
      */
     @RequestMapping(value="/edit")
     public ModelAndView edit(String id,Model model) {
-        model.addAttribute("hello","hello");
-        ModelAndView mv =new ModelAndView("login/login_edit","model",model);
+        Login login = null;
+        if(StringUtils.isNotBlank(id)&&StringUtils.isNumeric(id)){
+            login = loginService.findById(Integer.parseInt(id));
+        }else{
+            login = new Login();
+            login.setSex(1);
+        }
+        model.addAttribute("login",login);
+        ModelAndView mv =new ModelAndView("login/login_edit");
         return mv;
     }
     /**

@@ -82,18 +82,29 @@ layui.use(['jquery','table','layer'], function(){
       //do somehing
       console.log(tr)
     } else if(layEvent === 'del'){ //删除
-      layer.confirm('真的删除行么', function(index){
-        obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
-        layer.close(index);
-        //向服务端发送删除指令
-      });
+        layer.confirm('真的删除行么', function(index){
+            $.post('/login/del',{id:data.id},function(res){
+                if(res.status==1){
+                    layer.close(index);
+                    table.reload('idTest',{
+                        page: {
+                            curr: 1 //重新从第 1 页开始
+                        }
+                    });
+                }
+            })
+        });
     } else if(layEvent === 'edit'){ //编辑
-      //do something
-
-      //同步更新缓存对应的值
-      obj.update({
-    	  userName: '123'
-      });
+        var index =layer.open({
+            type: 2,
+            title: '编辑',
+            shadeClose: true,
+            shade: false,
+            maxmin: true, //开启最大化最小化按钮
+            area: ['893px', '600px'],
+            content: '/login/edit?id='+data.id
+        });
+        layer.full(index);
     }
   });
 
