@@ -13,6 +13,7 @@ import java.util.List;
 
 @Mapper
 public interface LoginDao {
+    Integer count(HashMap map);
     List<Login> list(HashMap map);
     Login findById(Integer id);
     Login findUserByUsername(Login login);

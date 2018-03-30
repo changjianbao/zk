@@ -16,11 +16,17 @@
     <select id="findUserByUsername" parameterType="com.zk.pojo.Login" resultType="com.zk.pojo.Login">
         select * from login where username=#{username} or telephone=#{telephone} limit 1
     </select>
+    <!-- 查询总条数 -->
+    <select id="count" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+        select count(*) from login
+        where 1=1
+    </select>
     <!-- 查询用户list -->
     <select id="list" parameterType="java.util.HashMap" resultType="com.zk.pojo.Login">
         select * from login
         where 1=1
         limit #{start},#{length}
+--         order by create_date
     </select>
     <!-- 添加用户信息 -->
     <insert id="insert" parameterType="com.zk.pojo.Login">

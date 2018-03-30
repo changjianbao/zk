@@ -20,6 +20,15 @@ public class LoginServiceImpl implements LoginService {
     private LoginDao loginDao;
 
     /**
+     * 查询数据总条数
+     * @return
+     */
+    @Override
+    public Integer count(HashMap map) {
+        return loginDao.count(map);
+    }
+
+    /**
      * 查询所有数据列表
      * @return
      */

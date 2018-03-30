@@ -61,24 +61,26 @@ public class LoginController {
      * @return
      */
     @RequestMapping(value="/getList")
-    public @ResponseBody Object getList(String pageNumber,String pageSize) {
+    public @ResponseBody Object getList(String page,String limit) {
         //返回结果
         JSONObject result=new JSONObject();
         //分页
         Integer start=0;
-        if(pageNumber!=null){
-            start=Integer.parseInt(pageNumber);
+        if(page!=null){
+            start=(Integer.parseInt(page)-1)*Integer.parseInt(limit);
         }
         Integer length=10;
-        if(pageNumber!=null){
-            length=Integer.valueOf(start/Integer.parseInt(pageNumber)+1);
+        if(limit!=null){
+            length=Integer.parseInt(limit);
         }
         HashMap map = new HashMap();
         map.put("start",start);
         map.put("length",length);
-
+        //查询总条数
+        int count=loginService.count(map);
+        //查询列表数据
         List<Login> list = loginService.list(map);
-        JSONObject obj=TableData.getLayUITable(0, "", list.size(), list);
+        JSONObject obj=TableData.getLayUITable(0, "", count, list);
         return obj;
     }
     /**
