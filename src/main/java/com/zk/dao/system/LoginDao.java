@@ -21,4 +21,5 @@ public interface LoginDao {
     Integer insert(Login user);
     void update(Login user);
     void delete(Integer id);
+    void batchDelete(List<Integer> idList);
 }

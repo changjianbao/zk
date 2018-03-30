@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mapper.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
 <!-- namespace必须指向Dao接口 -->
 <mapper namespace="com.zk.dao.system.LoginDao">
     <!-- 根据id获取用户信息 -->
@@ -21,14 +20,14 @@
         select count(*) from login
         where 1=1
     </select>
-    <!-- 查询用户list -->
+    <!-- 查询list -->
     <select id="list" parameterType="java.util.HashMap" resultType="com.zk.pojo.Login">
         select * from login
         where 1=1
+        order by create_date
         limit #{start},#{length}
---         order by create_date
     </select>
-    <!-- 添加用户信息 -->
+    <!-- 添加信息 -->
     <insert id="insert" parameterType="com.zk.pojo.Login">
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
             select LAST_INSERT_ID()
@@ -39,11 +38,18 @@
         value
           (#{username},#{password},#{roleId},#{realName},#{telephone},#{bz},#{delFlag},#{createBy},now(),#{updateBy},now(),#{shenFen},#{sex});
     </insert>
-    <!-- 根据id删除用户信息 -->
+    <!-- 根据id删除 -->
     <delete id="delete" parameterType="int">
         delete from login where id=#{id}
     </delete>
-    <!-- 修改用户信息 -->
+    <!-- 批量删除 -->
+    <delete id="batchDelete" parameterType="java.util.List">
+        delete from login where id in
+        <foreach item="item" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+    <!-- 修改信息 -->
     <update id="update" parameterType="com.zk.pojo.Login">
         update
             login

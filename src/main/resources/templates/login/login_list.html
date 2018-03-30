@@ -52,7 +52,7 @@
 	<!-- 加载js文件 -->
 	<script type="text/javascript" src="../larryms/common/frame/layui/layui.js"></script>
 	<script type="text/html" id="barDemo">
-  		<a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+  		<!--<a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>-->
   		<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
   		<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 	</script>
@@ -71,6 +71,7 @@ layui.config({
 layui.use(['jquery','table','layer'], function(){
 	var $ = layui.$,
     table = layui.table,
+	common = layui.common,
     layer = layui.layer;
   //监听工具条
   table.on('tool(test)', function(obj){ //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
@@ -139,18 +140,55 @@ layui.use(['jquery','table','layer'], function(){
   });
   //监听复选框
   table.on('checkbox(test)', function(obj){
-	  console.log(obj.checked); //当前是否选中状态
-	  console.log(obj.data); //选中行的相关数据
-	  console.log(obj.type); //如果触发的是全选，则为：all，如果触发的是单选，则为：one
+//	  console.log(obj.checked); //当前是否选中状态
+//	  console.log(obj.data); //选中行的相关数据
+//	  console.log(obj.type); //如果触发的是全选，则为：all，如果触发的是单选，则为：one
   });
   //监听删除
   $('#del').on('click',function(){
 	  var checkStatus = table.checkStatus('idTest'); //test即为基础参数id对应的值
 
-	  console.log(checkStatus.data) //获取选中行的数据
-	  console.log(checkStatus.data.length) //获取选中行数量，可作为是否有选中行的条件
-	  console.log(checkStatus.isAll ) //表格是否全选
+//	  console.log(checkStatus.data) //获取选中行的数据
+//	  console.log(checkStatus.data.length) //获取选中行数量，可作为是否有选中行的条件
+//	  console.log(checkStatus.isAll ) //表格是否全选
   });
+	//监听批量删除
+  $('#del').on('click',function(){
+	var checkStatus = table.checkStatus('idTest'); //test即为基础参数id对应的值
+      console.log(checkStatus.data)
+	if(checkStatus.data.length>0){
+		//循环删除
+		$.each( checkStatus.data, function(index, obj){
+			if(obj.id==1){
+                layer.open({title: '警告',content: 'admin不能删除'});
+                return false;
+			}else{
+				$.ajax({
+					type: "post",
+					url: "/login/batchDelete",
+					data: {ids:obj.id},
+					dataType: "json",
+					async:false,
+					success: function(data){
+						if(data.status==1){
+                            //刷新表格
+                            table.reload('idTest',{
+                                page: {
+                                    curr: 1 //重新从第 1 页开始
+                                }
+                            });
+                            layer.msg("删除成功")
+						}else{
+                            layer.open({title: '警告',content: data.msg});
+						}
+					}
+				});
+			}
+		});
+	}else{
+		layer.msg("至少选中一行数据")
+	}
+   });
 });
 </script>
 </body>

@@ -14,9 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 用户管理
@@ -165,6 +163,39 @@ public class LoginController {
             loginService.delete(Integer.parseInt(id));
             result.put("status",1);
             result.put("msg","操作成功");
+        }else{
+            result.put("msg","操作失败ID不能为空");
+        }
+        return result;
+    }
+
+    /**
+     * 根据ID批量删除
+     * @param ids
+     * @return
+     */
+    @RequestMapping(value="/batchDelete")
+    public @ResponseBody JSONObject batchDelete(String ids) {
+        //返回结果
+        JSONObject result=new JSONObject();
+        boolean flag=true;
+        result.put("status",0);
+        //根据ID查询一条记录
+        if(!StringUtils.isBlank(ids)){
+            List<Integer> idList=new ArrayList<>();
+            String[] idArr = ids.split(",");
+            for(String sId : idArr){
+                if(StringUtils.isNumeric(sId)){
+                    idList.add(Integer.parseInt(sId));
+                }else{
+                    result.put("msg","操作失败;< "+sId+" >非数字");
+                }
+            }
+            if(flag){
+                loginService.batchDelete(idList);
+                result.put("status",1);
+                result.put("msg","操作成功");
+            }
         }else{
             result.put("msg","操作失败ID不能为空");
         }

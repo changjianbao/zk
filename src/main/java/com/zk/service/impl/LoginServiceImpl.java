@@ -93,4 +93,13 @@ public class LoginServiceImpl implements LoginService {
     public void delete(Integer id) {
         loginDao.delete(id);
     }
+
+    /**
+     * 根据ID批量删除
+     * @param idList
+     */
+    @Override
+    public void batchDelete(List<Integer> idList) {
+        loginDao.batchDelete(idList);
+    }
 }
