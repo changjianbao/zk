@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>系统配置管理</title>
+<meta name="keywords" content="" />
+<meta name="description" content="LarryCMS Version:1.09" />
+<meta name="Author" content="larry" />
+<meta name="renderer" content="webkit"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="format-detection" content="telephone=no"/>
+<link rel="Shortcut Icon" href="/favicon.ico" />
+<!-- load css -->
+<link rel="stylesheet" type="text/css" href="../larryms/common/frame/layui/css/layui.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../larryms/common/css/gobal.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../larryms/common/css/animate.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../larryms/backstage/css/common.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../larryms/backstage/css/sysconf.css" media="all" />
+</head>
+<body>
+	<div class="larry-fluid larry-wrapper animated fadeInRightBig">
+		<div class="layui-row lay-col-space15">
+			<div class="layui-cos-xs12 layui-col-sm12 layui-col-md12 layui-col-lg12">
+				<section class="larry-body">
+					<div class="larry-body-header">
+						<span class="tit">类目管理 ：</span>
+					</div>
+				</section>
+			</div>
+			<div class="layui-cos-xs12 layui-col-sm12 layui-col-md12 layui-col-lg12">
+				<section class="larry-body">
+					<div class="larry-body-content clearfix">
+						<div class="layui-form larry-table-list">
+						<div class="layui-btn-group">
+						  <button id="add" class="layui-btn layui-btn-sm">
+						    <i class="layui-icon">&#xe654;</i>
+						  </button>
+						  <button id="del" class="layui-btn layui-btn-sm">
+						    <i class="layui-icon">&#xe640;</i>
+						  </button>
+						</div>
+							<table id="demo" lay-filter="test" class="layui-table" lay-even="" lay-skin="line"></table>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+	<!-- 加载js文件 -->
+	<script type="text/javascript" src="../larryms/common/frame/layui/layui.js"></script>
+	<script type="text/html" id="barDemo">
+  		<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  		<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+	</script>
+	
+<script>
+layui.config({
+	base: '../larryms/common/lib/'
+});
+layui.use(['jquery','table','layer'], function(){
+	var $ = layui.$,
+    table = layui.table,
+    layer = layui.layer;
+  //监听工具条
+  table.on('tool(test)', function(obj){ //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+    var data = obj.data; //获得当前行数据
+    var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+    var tr = obj.tr; //获得当前行 tr 的DOM对象
+
+   if(layEvent === 'del'){ //删除
+        layer.confirm('真的删除行么', function(index){
+            $.post('/category/del',{id:data.id},function(res){
+                if(res.status==1){
+                    layer.close(index);
+                    table.reload('idTest',{
+                        page: {
+                            curr: 1 //重新从第 1 页开始
+                        }
+                    });
+                }
+            })
+        });
+    } else if(layEvent === 'edit'){ //编辑
+        var index =layer.open({
+            type: 2,
+            title: '编辑',
+            shadeClose: true,
+            shade: false,
+            maxmin: true, //开启最大化最小化按钮
+            area: ['893px', '600px'],
+            content: '/category/edit?id='+data.id
+        });
+        layer.full(index);
+    }
+  });
+
+  //第一个实例
+  table.render({
+	id: 'idTest',
+    elem: '#demo'
+    ,url: '/category/getList' //数据接口
+    ,page: true //开启分页
+    ,limit:10
+    ,limits:[10,30,60,90]
+    ,cols: [[ //表头
+       {field: 'id', title: 'ID', width:"10%", sort: true, fixed: 'left',type:'checkbox'}
+      ,{field: 'cname', title: '类目名称', width:"20%"}
+      ,{field: 'bz', title: '备注', width:"40%"}
+      ,{title: '操作',width:"30%",toolbar: '#barDemo'}
+    ]]
+  });
+  //点击新增按钮，弹出新增页面
+  $('#add').on('click',function(){
+	  var index =layer.open({
+	      type: 2,
+	      title: '新增',
+	      shadeClose: true,
+	      shade: false,
+	      maxmin: true, //开启最大化最小化按钮
+	      area: ['893px', '600px'],
+	      content: '/category/edit'
+	    });
+	  layer.full(index);
+  });
+  //监听批量删除
+  $('#del').on('click',function(){
+	var checkStatus = table.checkStatus('idTest'); //test即为基础参数id对应的值
+      console.log(checkStatus.data)
+	if(checkStatus.data.length>0){
+		//循环删除
+		$.each( checkStatus.data, function(index, obj){
+			$.ajax({
+				type: "post",
+				url: "/category/batchDelete",
+				data: {ids:obj.id},
+				dataType: "json",
+				async:false,
+				success: function(data){
+					if(data.status==1){
+						//刷新表格
+						table.reload('idTest',{
+							page: {
+								curr: 1 //重新从第 1 页开始
+							}
+						});
+						layer.msg("删除成功")
+					}else{
+						layer.open({title: '警告',content: data.msg});
+					}
+				}
+			});
+		});
+	}else{
+		layer.msg("至少选中一行数据")
+	}
+   });
+});
+</script>
+</body>
+</html>

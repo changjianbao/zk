@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mapper.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.zk.dao.system.CategoryDao">
+    <!-- 根据id获取用户信息 -->
+    <select id="findById" parameterType="int" resultType="com.zk.pojo.Category">
+        select * from category where id = #{id} limit 1
+    </select>
+    <!-- 根据名获取用户信息 -->
+    <select id="findByName" parameterType="com.zk.pojo.Category" resultType="com.zk.pojo.Category">
+        select * from category where cname=#{cname} limit 1
+    </select>
+    <!-- 查询相同名是否存在多条记录 -->
+    <select id="findDuplicateName" parameterType="com.zk.pojo.Category" resultType="com.zk.pojo.Category">
+        select * from category where cname=#{cname} and id != #{id} limit 1
+    </select>
+    <!-- 查询总条数 -->
+    <select id="count" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+        select count(*) from category
+        where 1=1
+    </select>
+    <!-- 查询list -->
+    <select id="list" parameterType="java.util.HashMap" resultType="com.zk.pojo.Category">
+        select * from category
+        where 1=1
+        order by create_date
+        limit #{start},#{length}
+    </select>
+    <!-- 添加信息 -->
+    <insert id="insert" parameterType="com.zk.pojo.Category">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            select LAST_INSERT_ID()
+        </selectKey>
+        insert into
+        category
+          (cname,bz,del_flag,create_by,create_date,update_by,update_date)
+        value
+          (#{cname},#{bz},#{delFlag},#{createBy},now(),#{updateBy},now());
+    </insert>
+    <!-- 根据id删除 -->
+    <delete id="delete" parameterType="int">
+        delete from category where id=#{id}
+    </delete>
+    <!-- 批量删除 -->
+    <delete id="batchDelete" parameterType="java.util.List">
+        delete from category where id in
+        <foreach item="item" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+    <!-- 修改信息 -->
+    <update id="update" parameterType="com.zk.pojo.Category">
+        update
+            category
+        set
+            cname=#{cname},
+            bz=#{bz},
+            del_flag=#{delFlag},
+            update_by=#{updateBy},
+            update_date=#{updateDate}
+        where id=#{id}
+    </update>
+</mapper>
