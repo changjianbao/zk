@@ -8,7 +8,7 @@ import java.io.FileOutputStream;
  */
 public class FileUtil {
     /**
-     * 文件上传
+     * 文件上传1
      * @param file
      * @param filePath
      * @param fileName
